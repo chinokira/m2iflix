@@ -1,0 +1,74 @@
+{
+  "users": [
+    {
+      "email": "utilisateur1@example.com",
+      "password": "motdepasse1",
+      "id": "7c95",
+      "listFilm": [
+        {
+          "title": "Caught",
+          "year": 1900,
+          "cast": [],
+          "genres": [],
+          "href": null
+        }
+      ]
+    },
+    {
+      "email": "utilisateur2@example.com",
+      "password": "motdepasse2",
+      "id": "e2d4",
+      "listFilm": [
+        {
+          "title": "After Dark in Central Park",
+          "year": 1900,
+          "cast": [],
+          "genres": [],
+          "href": null
+        }
+      ]
+    },
+    {
+      "id": "97e0",
+      "email": "utilisateur5@example.com",
+      "password": "motdepasse5",
+      "listFilm": []
+    },
+    {
+      "id": "81b6",
+      "email": "utilisateur4@example.com",
+      "password": "motdepass4",
+      "listFilm": []
+    }
+  ],
+  "movies": [
+    {
+      "title": "After Dark in Central Park",
+      "year": 1900,
+      "cast": [],
+      "genres": [],
+      "href": null
+    },
+    {
+      "title": "Boarding School Girls' Pajama Parade",
+      "year": 1900,
+      "cast": [],
+      "genres": [],
+      "href": null
+    },
+    {
+      "title": "Buffalo Bill's Wild West Parad",
+      "year": 1900,
+      "cast": [],
+      "genres": [],
+      "href": null
+    },
+    {
+      "title": "Caught",
+      "year": 1900,
+      "cast": [],
+      "genres": [],
+      "href": null
+    }
+  ]
+}

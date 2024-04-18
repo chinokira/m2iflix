@@ -4,12 +4,20 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "concurrently \"vite --open\" \"json-server -p 8000 bdd.json \"",
     "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.4.21"
+    "axios": "^1.6.8",
+    "bootstrap": "^5.3.3",
+    "concurrently": "^8.2.2",
+    "pinia": "^2.1.7",
+    "vee-validate": "^4.12.6",
+    "vue": "^3.4.21",
+    "vue-router": "^4.3.1",
+    "yup": "^1.4.0",
+    "yup-locales": "^1.2.21"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",
