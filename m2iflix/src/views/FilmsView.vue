@@ -4,7 +4,11 @@
     <div class="film-list">
       <div v-for="movie in movies" :key="movie.id" class="film-item">
         <h2 class="film-title">{{ movie.title }}</h2>
-        <button @click="addMovieToList(movie)" class="add-button">Ajouter</button>
+        <button @click="addMovieToList(movie)"
+                :class="{ 'add-button': true, 'disabled': isMovieAdded(movie) }"
+                :disabled="isMovieAdded(movie)">
+          Ajouter
+        </button>
       </div>
     </div>
   </div>
@@ -17,13 +21,14 @@ export default {
   data() {
     return {
       movies: [],
+      user: null
     };
   },
   created() {
     this.loadMovies();
+    this.user = this.getAuthenticatedUser();
   },
   methods: {
-
     async loadMovies() {
       try {
         const response = await axios.get(`http://localhost:8000/movies`);
@@ -32,36 +37,39 @@ export default {
         console.error('Erreur lors du chargement des films :', error);
       }
     },
-
     async addMovieToList(movie) {
       try {
-        const user = this.getAuthenticatedUser()
-        if (!user) {
-          console.error('Utilisateur non connecté');
+        if (!this.user || !this.user.id) {
+          console.error('Utilisateur non connecté ou ID manquant');
           return;
         }
-        if (!user.listFilm) {
-          user.listFilm = [];
+        if (!this.user.listFilm) {
+          this.user.listFilm = [];
         }
-        if (user.listFilm.some(film => film.id === movie.id)) {
+        if (this.user.listFilm.some(film => film.title === movie.title)) {
           console.log('Ce film est déjà dans la liste de l\'utilisateur.');
           return;
         }
-        user.listFilm.push(movie);
-        await axios.put(`http://localhost:8000/users/${user.id}`, user);
+        this.user.listFilm.push(movie);
+        await axios.put(`http://localhost:8000/users/${this.user.id}`, this.user);
+        localStorage.setItem('user', JSON.stringify(this.user));
         console.log('Film ajouté à la liste de l\'utilisateur :', movie);
       } catch (error) {
-        alert('Erreur lors de l\'ajout du film à la liste de l\'utilisateur :', error);
+        console.error('Erreur lors de l\'ajout du film à la liste de l\'utilisateur :', error);
       }
     },
-
-    // Cette fonction doit être implémentée pour récupérer l'utilisateur connecté
     getAuthenticatedUser() {
-      const user = JSON.parse(localStorage.getItem('user'))[0];
-      return user;
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user && user.length > 0) {
+        return user[user.length - 1];
+      } else {
+        this.$router.push('/connexion');
+      }
+    },
+    isMovieAdded(movie) {
+      return this.user.listFilm && this.user.listFilm.some(film => film.title === movie.title);
     }
-
-  },
+  }
 };
 </script>
 
@@ -101,5 +109,10 @@ export default {
 
 .add-button:hover {
   background-color: #ff3d3d;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 </style>

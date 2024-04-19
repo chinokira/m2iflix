@@ -39,6 +39,10 @@ export default {
         if (user.length > 0) {
           console.log('Utilisateur connecté :', user);
           localStorage.setItem('user', JSON.stringify(user));
+
+          const token = 'votre_token'; // Générez un token unique ici
+          localStorage.setItem('token', token); // Stockez le token dans le localStorage
+
           this.$router.push('/films');
         } else {
           alert('Erreur de connexion : Utilisateur non trouvé');

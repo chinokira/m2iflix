@@ -25,4 +25,4 @@ app.config.globalProperties.isAuthenticated = isAuthenticated;
 app
     .use(router)
     .use(pinia)
-    .use(router).mount('#app')
+    .mount('#app')

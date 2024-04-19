@@ -6,11 +6,12 @@
       "id": "7c95",
       "listFilm": [
         {
-          "title": "Caught",
+          "title": "Boarding School Girls' Pajama Parade",
           "year": 1900,
           "cast": [],
           "genres": [],
-          "href": null
+          "href": null,
+          "id": "80d9"
         }
       ]
     },
@@ -18,26 +19,18 @@
       "email": "utilisateur2@example.com",
       "password": "motdepasse2",
       "id": "e2d4",
-      "listFilm": [
-        {
-          "title": "After Dark in Central Park",
-          "year": 1900,
-          "cast": [],
-          "genres": [],
-          "href": null
-        }
-      ]
-    },
-    {
-      "id": "97e0",
-      "email": "utilisateur5@example.com",
-      "password": "motdepasse5",
       "listFilm": []
     },
     {
-      "id": "81b6",
       "email": "utilisateur4@example.com",
       "password": "motdepass4",
+      "id": "81b6",
+      "listFilm": []
+    },
+    {
+      "email": "utilisateur5@example.com",
+      "password": "motdepasse5",
+      "id": "97e0",
       "listFilm": []
     }
   ],
@@ -47,28 +40,32 @@
       "year": 1900,
       "cast": [],
       "genres": [],
-      "href": null
+      "href": null,
+      "id": "78c1"
     },
     {
       "title": "Boarding School Girls' Pajama Parade",
       "year": 1900,
       "cast": [],
       "genres": [],
-      "href": null
+      "href": null,
+      "id": "80d9"
     },
     {
       "title": "Buffalo Bill's Wild West Parad",
       "year": 1900,
       "cast": [],
       "genres": [],
-      "href": null
+      "href": null,
+      "id": "ce7f"
     },
     {
       "title": "Caught",
       "year": 1900,
       "cast": [],
       "genres": [],
-      "href": null
+      "href": null,
+      "id": "3c1e"
     }
   ]
 }
