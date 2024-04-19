@@ -1,21 +1,9 @@
 <template>
   <nav>
-    <div v-if="isLoggedIn" class="profile-circle" @click="redirectToMovies">Profil</div>
+    <div class="list-circle" @click="redirectToList">Liste</div>
     <ul>
       <li>
-        <button class="nav-button" @click="$router.push('/')">Connexion</button>
-      </li>
-      |
-      <li>
-        <button class="nav-button" @click="$router.push('/inscriptions')">Inscriptions</button>
-      </li>
-      |
-      <li>
         <button class="nav-button" @click="$router.push('/films')">Films</button>
-      </li>
-      |
-      <li>
-        <button class="nav-button" @click="$router.push('/liste')">Liste</button>
       </li>
       <li class="logout-button">
         <button @click="logout">Déconnexion</button>
@@ -26,13 +14,8 @@
 
 <script>
 export default {
-  computed: {
-    isLoggedIn() {
-      return localStorage.getItem('user') !== null;
-    }
-  },
   methods: {
-    redirectToMovies() {
+    redirectToList() {
       if (this.isLoggedIn) {
         this.$router.push('/liste');
       } else {
@@ -41,8 +24,13 @@ export default {
     },
     logout() {
       localStorage.removeItem('user');
-      localStorage.removeItem('token'); // Invalider le token
+      localStorage.removeItem('token');
       this.$router.push('/connexion');
+    }
+  },
+  computed: {
+    isLoggedIn() {
+      return localStorage.getItem('user') !== null;
     }
   }
 }
@@ -56,7 +44,7 @@ nav {
   align-items: center;
 }
 
-.profile-circle {
+.list-circle {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -67,6 +55,15 @@ nav {
   justify-content: center;
   margin-right: 20px;
   cursor: pointer;
+  transition: background-color 0.3s, transform 0.1s; /* Ajout de la transition de transform */
+}
+
+.list-circle:hover {
+  background-color: #ff3d3d;
+}
+
+.list-circle:active {
+  transform: scale(0.9); /* Réduire légèrement la taille lorsqu'il est cliqué */
 }
 
 ul {
@@ -78,7 +75,7 @@ ul {
 }
 
 li {
-  margin-left: 20px; /* Espacement entre les éléments */
+  margin-left: 20px;
 }
 
 .nav-button,
@@ -95,5 +92,6 @@ li {
 .nav-button:hover,
 .logout-button button:hover {
   color: #e50914;
+  text-decoration: underline;
 }
 </style>

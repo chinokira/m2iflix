@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <h1>Formulaire d'Inscription</h1>
     <form @submit.prevent="submitForm">
       <div>
@@ -36,11 +36,10 @@ export default {
       try {
         const response = await axios.get('http://localhost:8000/users', {
           params: {
-            email: this.email,
-            password: this.password
+            email: this.email
           }
         });
-        if (response.data[0].email ===this.email) {
+        if (response.data.length > 0) {
           console.log('Un utilisateur avec cet email existe déjà.');
           return;
         }
@@ -90,22 +89,14 @@ input[type="password"] {
 }
 
 button[type="submit"] {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
   background-color: #e50914;
   color: #fff;
   font-size: 16px;
   cursor: pointer;
-}
-
-button[type="submit"]:hover {
-  background-color: #ff3d3d;
-}
-
-.submitted-data {
-  margin-top: 20px;
-  color: #fff;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: none;
+  border-radius: 5px;
 }
 </style>

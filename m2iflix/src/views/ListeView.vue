@@ -2,7 +2,7 @@
   <div>
     <h1 class="title">Films Enregistrés</h1>
     <div class="film-list">
-      <div v-if="user && user.listFilm && user.listFilm.length === 0">
+      <div v-if="user && user.listFilm && user.listFilm.length === 0" class="no-films">
         <p>Aucun film enregistré.</p>
       </div>
       <div v-else-if="user && user.listFilm">
@@ -53,18 +53,24 @@ export default {
           this.$router.push('/connexion');
           return;
         }
-        user.listFilm = user.listFilm.filter(film => film.id !== movie.id);
+        // Filtrer le film spécifique plutôt que de supprimer tous les films
+        user.listFilm = user.listFilm.filter(film => film.title !== movie.title);
         await axios.put(`http://localhost:8000/users/${user.id}`, user);
         localStorage.setItem('user', JSON.stringify(user));
-        console.log('Film supprimé de la liste de l\'utilisateur :', movie);
-        // Recharger les données de l'utilisateur après avoir supprimé le film
         this.loadUser();
       } catch (error) {
         console.error('Erreur lors de la suppression du film de la liste de l\'utilisateur :', error);
       }
     },
     getAuthenticatedUser() {
-      return JSON.parse(localStorage.getItem('user'));
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user[user.length - 1] != null) {
+        return user[user.length - 1];
+      } else if (user != null) {
+        return user;
+      } else {
+        this.$router.push('/connexion');
+      }
     }
   }
 };
@@ -106,5 +112,19 @@ export default {
 
 .remove-button:hover {
   background-color: #555;
+}
+
+/* Style pour le message "Aucun film enregistré" */
+.no-films {
+  margin-bottom: 20px;
+  background-color: #f8d7da; /* Couleur de fond pour attirer l'attention */
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.no-films p {
+  margin: 0;
+  color: #721c24; /* Couleur du texte pour le mettre en évidence */
+  font-weight: bold;
 }
 </style>

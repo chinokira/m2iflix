@@ -37,7 +37,7 @@ export default {
         });
         const user = response.data;
         if (user.length > 0) {
-          console.log('Utilisateur connecté :', user);
+          // console.log('Utilisateur connecté :', user);
           localStorage.setItem('user', JSON.stringify(user));
 
           const token = 'votre_token'; // Générez un token unique ici

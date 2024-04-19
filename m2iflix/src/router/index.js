@@ -51,7 +51,6 @@ const router = createRouter({
 const isAuthenticated = () => {
     const token = localStorage.getItem('token');
     if (!token) return false;
-    // Vérifiez si le token est valide (par exemple, s'il a expiré)
     return true;
 };
 
@@ -59,14 +58,14 @@ router.beforeEach((to, from, next) => {
     document.title = to.meta.title || "M2Iflix"
     if (to.meta.requiresAuth) {
         if (isAuthenticated()) {
-            console.log("index.js isAuthenticated", isAuthenticated());
+            // console.log("index.js isAuthenticated", isAuthenticated());
             return next();
         } else {
-            console.log("index.js isAuthenticated", isAuthenticated());
+            // console.log("index.js isAuthenticated", isAuthenticated());
             return next('/connexion');
         }
     } else {
-        console.log("index.js meta", to.meta.requiresAuth)
+        // console.log("index.js meta", to.meta.requiresAuth)
         return next();
     }
 });
